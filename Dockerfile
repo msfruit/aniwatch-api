@@ -1,5 +1,7 @@
 # build stage for building .ts files
 FROM node:22-alpine as build
+RUN apk add --no-cache git
+
 
 RUN mkdir /home/app
 
@@ -15,6 +17,7 @@ RUN npm run build
 
 # prod stage for including only necessary files
 FROM node:22-alpine as prod
+RUN apk add --no-cache git
 
 LABEL org.opencontainers.image.source=https://github.com/ghoshRitesh12/aniwatch-api
 LABEL org.opencontainers.image.description="NodeJS API for obtaining anime data from hianime.to"
